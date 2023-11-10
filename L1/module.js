@@ -12,3 +12,4 @@ console.log(people, cls);
 // there some inbuilt files we can import like os. filesystem
 
 console.log(os.platform(), os.homedir());
+console.log(os.hostname());
