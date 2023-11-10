@@ -7,3 +7,4 @@ const greet = (Name) => {
 
 greet("mario");
 greet("yoshi");
+// logging
