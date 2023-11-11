@@ -4,6 +4,7 @@ const fs = require("fs");
 const server = http.createServer(function (req, res) {
   console.log(req.url, req.method);
   let path = "./views/";
+  res.setHeader("Content-Type", "text/html");
   switch (req.url) {
     case "/":
       path += "index.html";
@@ -13,12 +14,17 @@ const server = http.createServer(function (req, res) {
       path += "about.html";
       res.statusCode = 200;
       break;
+      break;
+    case "/about-me":
+      res.statusCode = 301;
+      res.setHeader("Location", "/about");
+      res.end();
+      break;
     default:
       path += "404.html";
       res.statusCode = 404;
       break;
   }
-  res.setHeader("Content-Type", "text/html");
 
   //    if we add head tag here it's gonna replace the default one.
   //   res.write(`
@@ -36,6 +42,7 @@ const server = http.createServer(function (req, res) {
       //   res.write(data);
       //   res.end();
       res.end(data);
+      console.log("hii");
     }
   });
 });
