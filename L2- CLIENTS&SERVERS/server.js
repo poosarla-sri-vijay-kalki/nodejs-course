@@ -2,7 +2,19 @@ const http = require("http");
 const fs = require("fs");
 //  in node js we need to create a server unlike in other tools like in apache.
 const server = http.createServer(function (req, res) {
-  console.log("request made");
+  console.log(req.url, req.method);
+  let path = "./views/";
+  switch (req.url) {
+    case "/":
+      path += "index.html";
+      break;
+    case "/about":
+      path += "about.html";
+      break;
+    default:
+      path += "404.html";
+      break;
+  }
   res.setHeader("Content-Type", "text/html");
 
   //    if we add head tag here it's gonna replace the default one.
@@ -13,7 +25,7 @@ const server = http.createServer(function (req, res) {
   //   res.end();
 
   //   send htm file by reading
-  fs.readFile("./views/index.html", (err, data) => {
+  fs.readFile(path, (err, data) => {
     if (err) {
       console.log(err);
       res.end();
